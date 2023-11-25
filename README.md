@@ -64,7 +64,7 @@ For subsequent runs, simply activate the virtual environment and start the API:
 python .\main.py --host 0.0.0.0
 ```
 
-> Tip: You can also try the [latest FooocosAPI version](https://github.com/konieshadow/Fooocus-API), but you might need to regenerate the client (`npm run fooocos:typegen`) and address any TypeScript compiler errors.
+> Tip: You can also try the [latest FooocosAPI version](https://github.com/konieshadow/Fooocus-API), but you might need to copy and replace openapi.json from `http://localhost:8888/openapi.json` (default) to `fooocos` directory, regenerate the client (`npm run fooocos:typegen`) and address any possible TypeScript compiler errors.
 
 ### Setting Up the Bot:
 
