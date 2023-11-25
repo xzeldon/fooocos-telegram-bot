@@ -1,0 +1,33 @@
+{
+    "name": "fooocos-telegram-bot",
+    "main": "dist/index.js",
+    "type": "module",
+    "imports": {
+        "#root/*": "./dist/src/*"
+    },
+    "scripts": {
+        "fooocos:typegen": "openapi-typescript ./fooocos/openapi.json -o ./fooocos/schema.d.ts",
+        "dev": "npm run clean && tsc-watch --onSuccess \"tsx --env-file=.env index.ts\"",
+        "start": "tsx --env-file=.env index.ts",
+        "build": "npm run clean && tsc --noEmit false",
+        "clean": "rimraf dist"
+    },
+    "devDependencies": {
+        "@types/node": "^20.9.2",
+        "openapi-typescript": "^6.7.1",
+        "rimraf": "^5.0.5",
+        "tsc-watch": "^6.0.4",
+        "tsx": "^4.1.4",
+        "typescript": "^5.2.2"
+    },
+    "dependencies": {
+        "@grammyjs/runner": "^2.0.3",
+        "@grammyjs/transformer-throttler": "^1.2.1",
+        "eventemitter3": "^5.0.1",
+        "grammy": "^1.19.2",
+        "openapi-fetch": "^0.8.1",
+        "p-queue": "^7.4.1",
+        "pino": "^8.16.2",
+        "pino-pretty": "^10.2.3"
+    }
+}
