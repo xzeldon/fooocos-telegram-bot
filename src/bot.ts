@@ -1,5 +1,6 @@
 import { logger } from "#root/logger.js";
 import { predict } from "#root/predict.js";
+import { Language, translate } from "#root/translate.js";
 import { downloadImage, isFooocosAlive, uploadPhoto } from "#root/utils.js";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 import { Bot, Context, InlineKeyboard, InlineQueryResultBuilder, InputMediaBuilder } from "grammy";
@@ -56,7 +57,18 @@ async function handleChosenInlineResult(ctx: Context) {
 
     activeTasks.set(userId, true);
 
-    const gen = predict(prompt);
+    let translatedPrompt;
+
+    try {
+        translatedPrompt = await translate(prompt, Language.en, Language.auto);
+    } catch (err) {
+        logger.warn(err, "prompt translation error");
+        translatedPrompt = prompt;
+    }
+
+    logger.trace({ prompt, translatedPrompt });
+
+    const gen = predict(translatedPrompt);
 
     for await (const state of gen) {
         if (state.status === "RUNNING") {
