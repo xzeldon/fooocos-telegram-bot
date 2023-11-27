@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 
 // https://yandex.com/dev/translate/doc/en/concepts/api-overview
 export enum Language {
